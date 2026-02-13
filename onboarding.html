@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Onboarding Digital Automoción</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #E2E8F0;
+            z-index: 0;
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before { left: 20px; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-purple-100 selection:text-purple-900">
+
+    <!-- Botón Volver -->
+    <nav class="max-w-5xl mx-auto px-8 py-6">
+        <a href="index.html" class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-purple-600 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Volver al Portfolio
+        </a>
+    </nav>
+
+    <main class="max-w-5xl mx-auto bg-white min-h-screen shadow-sm mb-8 border border-slate-100 rounded-xl overflow-hidden">
+
+        <!-- HERO HEADER -->
+        <header class="px-8 py-20 md:px-16 bg-slate-900 text-white relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-purple-900 rounded-full opacity-20 blur-3xl"></div>
+            
+            <div class="relative z-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-purple-500/20 border border-purple-500/50 text-purple-200 text-xs font-semibold tracking-wider mb-6 uppercase">Sector Automoción</span>
+                <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                    De "Nuevo" a "Productivo": <br>
+                    <span class="text-purple-400">Rediseño del Onboarding en Concesionarios</span>
+                </h1>
+                <p class="text-lg text-slate-300 max-w-2xl leading-relaxed">
+                    Cómo redujimos la curva de aprendizaje de 6 a 3 meses para 300 nuevos vendedores anuales, integrando formación digital y mentoría en el puesto de trabajo.
+                </p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 border-t border-slate-700 pt-8">
+                    <div>
+                        <div class="text-2xl font-bold text-white">300</div>
+                        <div class="text-xs text-slate-400 uppercase">Nuevos Ingresos/Año</div>
+                    </div>
+                    <div>
+                        <!-- CORREGIDO: De -40% a -50% (ya que bajar de 6 a 3 meses es exactamente la mitad) -->
+                        <div class="text-2xl font-bold text-white">-50%</div>
+                        <div class="text-xs text-slate-400 uppercase">Tiempo a Productividad</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">Digital + Físico</div>
+                        <div class="text-xs text-slate-400 uppercase">Modelo Híbrido</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTEXTO & PROBLEMA -->
+        <section class="px-8 py-16 md:px-16 grid md:grid-cols-12 gap-12 border-b border-slate-100">
+            <div class="md:col-span-5">
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-1 bg-purple-600 rounded-full"></span> El Problema Real
+                </h2>
+                <p class="text-slate-600 mb-4 leading-relaxed">
+                    La red de concesionarios sufría una alta rotación temprana (gente que se iba antes de los 90 días).
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    El onboarding tradicional consistía en "sentarse a leer manuales en PDF" durante 3 días y luego "sobrevivir" en la exposición. Resultado: vendedores frustrados y ventas perdidas por desconocimiento del producto (especialmente vehículos eléctricos).
+                </p>
+            </div>
+            <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-red-50 p-6 rounded-lg border border-red-100">
+                    <div class="text-3xl mb-2">🐢</div>
+                    <h3 class="font-bold text-red-900 mb-1">Lentitud</h3>
+                    <p class="text-sm text-red-700">Un vendedor tardaba <strong>6 meses</strong> en vender con autonomía y confianza.</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg border border-red-100">
+                    <div class="text-3xl mb-2">🚪</div>
+                    <h3 class="font-bold text-red-900 mb-1">Fuga de Talento</h3>
+                    <p class="text-sm text-red-700">El <strong>25%</strong> de los nuevos contratados abandonaba antes del tercer mes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LA SOLUCIÓN: EL VIAJE DE 90 DÍAS -->
+        <section class="px-8 py-16 md:px-16 bg-slate-50">
+            <h2 class="text-center text-2xl font-bold text-slate-900 mb-4">La Solución: "Dealer Academy Journey"</h2>
+            <p class="text-center text-slate-500 max-w-2xl mx-auto mb-16">Pasamos de un "evento puntual" de 3 días a un proceso acompañado de 90 días.</p>
+
+            <div class="relative timeline-line space-y-12">
+                
+                <!-- Fase 1: Pre-boarding -->
+                <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                    <div class="hidden md:block text-right">
+                        <h3 class="text-lg font-bold text-slate-800">Semana 0: Pre-Boarding</h3>
+                        <p class="text-slate-600 text-sm mt-2">Acceso a App móvil antes del primer día. Vídeo de bienvenida del CEO, cultura y logística (dónde aparcar, código de vestimenta).</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 w-10 h-10 -ml-0 md:-ml-5 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10">1</div>
+                    <div class="pl-16 md:pl-0 md:hidden"> <!-- Mobile view -->
+                        <h3 class="text-lg font-bold text-slate-800">Semana 0: Pre-Boarding</h3>
+                        <p class="text-slate-600 text-sm mt-2">Acceso a App móvil antes del primer día. Cultura y logística.</p>
+                    </div>
+                </div>
+
+                <!-- Fase 2: Inmersión -->
+                <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                    <div class="md:col-start-2 pl-16 md:pl-0">
+                        <h3 class="text-lg font-bold text-slate-800">Semana 1-2: Inmersión Híbrida</h3>
+                        <p class="text-slate-600 text-sm mt-2">Mañanas: Micro-learning de producto (píldoras de 5 min) en tablet.<br>Tardes: <strong>"Shadowing"</strong> (sombra) con un Mentor asignado observando ventas reales.</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 w-10 h-10 -ml-0 md:-ml-5 bg-white border-4 border-purple-600 rounded-full flex items-center justify-center text-slate-600 font-bold shadow z-10">2</div>
+                </div>
+
+                <!-- Fase 3: Práctica -->
+                <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                    <div class="hidden md:block text-right">
+                        <h3 class="text-lg font-bold text-slate-800">Mes 2: Certificación de Ventas</h3>
+                        <p class="text-slate-600 text-sm mt-2">Roleplay grabado con IA para practicar objeciones. Primera venta supervisada. Examen de certificación de producto obligatorio.</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 w-10 h-10 -ml-0 md:-ml-5 bg-white border-4 border-purple-600 rounded-full flex items-center justify-center text-slate-600 font-bold shadow z-10">3</div>
+                    <div class="pl-16 md:pl-0 md:hidden">
+                        <h3 class="text-lg font-bold text-slate-800">Mes 2: Certificación</h3>
+                        <p class="text-slate-600 text-sm mt-2">Roleplay, práctica de objeciones y primera venta supervisada.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HERRAMIENTAS Y TECNOLOGÍA -->
+        <section class="px-8 py-16 md:px-16 border-y border-slate-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-8">El Stack Tecnológico</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 border border-slate-200 rounded-xl hover:border-purple-200 transition-colors">
+                    <div class="font-bold text-slate-800 mb-2">📱 LMS Mobile-First</div>
+                    <p class="text-sm text-slate-500">Para consumo de contenido en los tiempos muertos en la tienda (iPad/Móvil).</p>
+                </div>
+                <div class="p-6 border border-slate-200 rounded-xl hover:border-purple-200 transition-colors">
+                    <div class="font-bold text-slate-800 mb-2">🤝 Pasaporte Digital</div>
+                    <p class="text-sm text-slate-500">Gamificación: Check-list de tareas que el Mentor debe validar físicamente en la App.</p>
+                </div>
+                <div class="p-6 border border-slate-200 rounded-xl hover:border-purple-200 transition-colors">
+                    <div class="font-bold text-slate-800 mb-2">📹 Video Roleplay</div>
+                    <p class="text-sm text-slate-500">Herramienta para grabarse presentando un coche y recibir feedback asíncrono.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACTO Y RESULTADOS -->
+        <section class="px-8 py-20 md:px-16 bg-slate-900 text-white">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Resultados de Negocio</h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        El cambio de modelo no solo mejoró la satisfacción, sino que impactó directamente en la cuenta de resultados de los concesionarios al tener vendedores productivos antes.
+                    </p>
+                    
+                    <!-- KPI List -->
+                    <ul class="space-y-6">
+                        <li class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 font-bold text-xl">🚀</div>
+                            <div>
+                                <strong class="block text-xl">3 Meses</strong>
+                                <span class="text-slate-400 text-sm">Tiempo medio hasta productividad total (antes 6 meses)</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xl">💰</div>
+                            <div>
+                                <strong class="block text-xl">+15% Ventas</strong>
+                                <span class="text-slate-400 text-sm">Ventas realizadas por nuevos empleados en su primer trimestre</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Visual Chart Representation -->
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Rotación Temprana (0-90 días)</h3>
+                    
+                    <div class="flex items-end justify-center space-x-6 h-56 pb-2">
+                        <!-- Bar Before -->
+                        <div class="flex flex-col items-center justify-end w-24 h-full group">
+                            <span class="mb-2 text-2xl font-bold text-slate-500">25%</span>
+                            <div class="w-16 bg-slate-700 rounded-t-lg h-[75%] group-hover:bg-slate-600 transition-all duration-300"></div>
+                            <span class="mt-4 text-xs text-slate-500 font-medium uppercase tracking-wide text-center">Año Anterior</span>
+                        </div>
+
+                        <!-- Flecha visual -->
+                        <div class="pb-16 text-slate-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </div>
+                        
+                        <!-- Bar After -->
+                        <div class="flex flex-col items-center justify-end w-24 h-full group relative">
+                            <!-- Badge flotante de mejora -->
+                            <div class="absolute top-0 -mt-2 animate-bounce">
+                                <span class="px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-xs font-bold text-green-400 shadow-sm">
+                                    -13 pts
+                                </span>
+                            </div>
+                            
+                            <span class="mb-2 text-3xl font-bold text-white mt-8">12%</span>
+                            <div class="w-16 bg-purple-600 rounded-t-lg h-[36%] group-hover:bg-purple-500 transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.3)]"></div>
+                            <span class="mt-4 text-xs text-white font-bold uppercase tracking-wide text-center">Año Actual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIAL / FOOTER -->
+        <footer class="px-8 py-12 md:px-16 text-center bg-white">
+            <blockquote class="text-lg md:text-xl italic text-slate-600 max-w-3xl mx-auto">
+                "Por fin los nuevos llegan al suelo de ventas sabiendo no solo las características del coche, sino cómo venderlo. Nos ahorra semanas de explicaciones básicas."
+            </blockquote>
+            <cite class="block mt-4 not-italic font-bold text-slate-900">— Director Comercial de Zona</cite>
+            
+            <div class="mt-12 pt-8 border-t border-slate-100 flex justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+</html>
+

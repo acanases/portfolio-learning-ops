@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso de Estudio: Scaling Culture en EdTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(13, 148, 136, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Botón Volver -->
+    <nav class="max-w-5xl mx-auto px-8 py-6">
+        <a href="index.html" class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-teal-600 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Volver al Portfolio
+        </a>
+    </nav>
+
+    <main class="max-w-5xl mx-auto bg-white min-h-screen shadow-sm mb-8 border border-slate-100 rounded-xl overflow-hidden">
+
+        <!-- HERO HEADER -->
+        <header class="px-8 py-20 md:px-16 bg-white relative overflow-hidden border-b border-slate-100">
+            <div class="relative z-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-teal-50 border border-teal-100 text-teal-700 text-xs font-semibold tracking-wider mb-6 uppercase">SaaS / EdTech B2B</span>
+                <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                    Escalando la Cultura: <br>
+                    <span class="text-teal-600">Onboarding para Hyper-Growth</span>
+                </h1>
+                <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">
+                    Cómo estructuramos la llegada de 50 empleados en un trimestre en una startup en fase de escalado, reduciendo el "Time-to-Quota" del equipo de ventas a la mitad.
+                </p>
+                
+                <div class="flex flex-wrap gap-6 mt-8 text-sm font-medium text-slate-400">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-slate-100 p-1 rounded">🏢</span> Series B Startup
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-slate-100 p-1 rounded">🌍</span> Remote-First
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-slate-100 p-1 rounded">👥</span> +150 Empleados
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Abstract Graphic Background -->
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-50 to-transparent opacity-50 hidden md:block"></div>
+        </header>
+
+        <!-- PROBLEMA -->
+        <section class="px-8 py-16 md:px-16 grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900 mb-4">El desafío del "Hyper-Growth"</h2>
+                <p class="text-slate-600 mb-4 leading-relaxed">
+                    Tras cerrar una ronda de inversión Serie B, la empresa necesitaba duplicar su plantilla en 6 meses.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    El proceso existente era informal ("shadowing" sin estructura). Los nuevos Account Executives (AEs) llegaban a sus primeras llamadas con clientes sin conocer a fondo el producto técnico, "quemando" leads valiosos.
+                </p>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Pain Points Detectados</h3>
+                <ul class="space-y-4">
+                    <li class="flex gap-3">
+                        <div class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold flex-shrink-0">1</div>
+                        <span class="text-sm text-slate-600"><strong>Inconsistencia:</strong> Cada manager explicaba el producto de una forma distinta.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <div class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold flex-shrink-0">2</div>
+                        <span class="text-sm text-slate-600"><strong>Sobrecarga Cognitiva:</strong> Se intentaba enseñar todo en la semana 1.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <div class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold flex-shrink-0">3</div>
+                        <span class="text-sm text-slate-600"><strong>Silos Remotos:</strong> Los nuevos empleados se sentían aislados al trabajar desde casa.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SOLUCIÓN: THE ACADEMY -->
+        <section class="px-8 py-16 md:px-16 bg-slate-900 text-white rounded-xl mx-4 md:mx-8 mb-12 shadow-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold mb-4">La Solución: "Dogfooding Academy"</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Usamos nuestro propio software EdTech para enseñar a los empleados. Si vendemos aprendizaje, debemos ser los mejores aprendiendo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 text-center mb-12">
+                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-teal-500 transition-colors">
+                    <div class="text-4xl mb-4">📅</div>
+                    <h3 class="font-bold mb-2 text-teal-400">Modelo de Cohortes</h3>
+                    <p class="text-sm text-slate-400">Los nuevos ingresos entran en grupos (cada 2 semanas). Crean comunidad y aprenden juntos, reduciendo el aislamiento remoto.</p>
+                </div>
+                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-teal-500 transition-colors">
+                    <div class="text-4xl mb-4">🎓</div>
+                    <h3 class="font-bold mb-2 text-teal-400">Certificación Pitch</h3>
+                    <p class="text-sm text-slate-400">Nadie habla con un cliente hasta aprobar el "Pitch Certification": una demo grabada y evaluada por pares usando IA.</p>
+                </div>
+                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-teal-500 transition-colors">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="font-bold mb-2 text-teal-400">Wiki "Single Source"</h3>
+                    <p class="text-sm text-slate-400">Centralización de todo el conocimiento en Notion. Si no está documentado, no existe. Cultura de documentación asíncrona.</p>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE DEMO ACTUALIZADO -->
+            <div class="text-center pb-4">
+                <a href="demo.html" class="btn-glow inline-flex items-center px-8 py-4 bg-teal-600 text-white font-bold rounded-xl transition-all duration-300">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                    Ver Demo del Proyecto
+                </a>
+                <p class="mt-4 text-xs text-slate-500 uppercase tracking-widest font-medium">Prototipo Interactivo · Ejecutándose desde demo.html</p>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="px-8 py-16 md:px-16">
+            <h2 class="text-xl font-bold text-slate-900 mb-8">El Journey de 4 Semanas</h2>
+            <div class="space-y-4">
+                <div class="flex group">
+                    <div class="w-24 md:w-32 py-4 flex-shrink-0 font-bold text-slate-400 group-hover:text-teal-600 transition-colors">Semana 1</div>
+                    <div class="flex-grow border-l-2 border-slate-200 pl-8 py-4 relative group-hover:border-teal-500 transition-colors">
+                        <div class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white border-2 border-slate-300 group-hover:border-teal-500 transition-colors"></div>
+                        <h3 class="font-bold text-slate-800">Cultura & Producto Básico</h3>
+                        <p class="text-sm text-slate-500 mt-1">Conocer a los fundadores (AMA session), configurar herramientas y entender la misión.</p>
+                    </div>
+                </div>
+                <div class="flex group">
+                    <div class="w-24 md:w-32 py-4 flex-shrink-0 font-bold text-slate-400 group-hover:text-teal-600 transition-colors">Semana 2</div>
+                    <div class="flex-grow border-l-2 border-slate-200 pl-8 py-4 relative group-hover:border-teal-500 transition-colors">
+                        <div class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white border-2 border-slate-300 group-hover:border-teal-500 transition-colors"></div>
+                        <h3 class="font-bold text-slate-800">Deep Dive Técnico</h3>
+                        <p class="text-sm text-slate-500 mt-1">Uso intensivo de la plataforma. El empleado debe construir un curso real usando nuestro software.</p>
+                    </div>
+                </div>
+                <div class="flex group">
+                    <div class="w-24 md:w-32 py-4 flex-shrink-0 font-bold text-slate-400 group-hover:text-teal-600 transition-colors">Semana 3</div>
+                    <div class="flex-grow border-l-2 border-slate-200 pl-8 py-4 relative group-hover:border-teal-500 transition-colors">
+                        <div class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white border-2 border-slate-300 group-hover:border-teal-500 transition-colors"></div>
+                        <h3 class="font-bold text-slate-800">Shadowing & Práctica</h3>
+                        <p class="text-sm text-slate-500 mt-1">Escuchar llamadas reales (Gong.io) y practicar objeciones con el "Buddy" asignado.</p>
+                    </div>
+                </div>
+                <div class="flex group">
+                    <div class="w-24 md:w-32 py-4 flex-shrink-0 font-bold text-slate-400 group-hover:text-teal-600 transition-colors">Semana 4</div>
+                    <div class="flex-grow border-l-2 border-slate-200 pl-8 py-4 relative group-hover:border-teal-500 transition-colors">
+                        <div class="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white border-2 border-slate-300 group-hover:border-teal-500 transition-colors"></div>
+                        <h3 class="font-bold text-slate-800">Certificación</h3>
+                        <p class="text-sm text-slate-500 mt-1">Demo final ante manager. Graduación de la cohorte.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section class="bg-teal-50 px-8 py-16 md:px-16 border-t border-teal-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-8 text-center">Impacto en Métricas SaaS</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase">Time to Quota (Ventas)</h3>
+                        <span class="text-green-600 font-bold bg-green-50 px-2 py-1 rounded text-xs">-2 Meses</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>Antes</span>
+                                <span>5 Meses</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-slate-300 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span class="text-teal-700 font-medium">Ahora</span>
+                                <span class="text-teal-700 font-bold">3 Meses</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase">eNPS (New Hires)</h3>
+                        <span class="text-green-600 font-bold bg-green-50 px-2 py-1 rounded text-xs">+45 Puntos</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl font-bold text-slate-800">72</div>
+                        <div class="text-sm text-slate-500">
+                            Puntuación excelente.<br>
+                            <span class="text-slate-400 line-through">Antes: 27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-12 text-slate-400 text-sm">
+            © 2024 Case Study Portfolio. Datos anonimizados.
+        </footer>
+
+    </main>
+
+</body>
+</html>
