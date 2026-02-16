@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Skills Lab | Sales Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; }
+        .app-shell { max-width: 430px; margin: 0 auto; min-height: 100vh; background: white; position: relative; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.1); }
+        @media (min-width: 768px) { .app-shell { min-height: 850px; margin-top: 20px; border-radius: 40px; height: 90vh; border: 8px solid #1e293b; overflow: hidden; } }
+        
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Flashcards */
+        .flashcard { perspective: 1000px; height: 380px; }
+        .flashcard-inner { transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; height: 100%; position: relative; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .card-face { backface-visibility: hidden; border-radius: 32px; padding: 2rem; display: flex; flex-direction: column; height: 100%; width: 100%; position: absolute; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .card-back { transform: rotateY(180deg); background: #f8fafc; border: 2px solid #e2e8f0; justify-content: center; }
+        
+        .progress-segment { height: 4px; border-radius: 2px; background: #e2e8f0; flex: 1; transition: all 0.4s; }
+        .progress-segment.active { background: #4f46e5; box-shadow: 0 0 10px rgba(79, 70, 229, 0.3); }
+        
+        .hidden { display: none; }
+
+        /* Audio Player Estilos */
+        .audio-player { background: #1e293b; border-radius: 20px; padding: 20px; color: white; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 25px rgba(30, 41, 59, 0.3); }
+        .play-btn { width: 50px; height: 50px; background: #4f46e5; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; }
+        .play-btn:active { transform: scale(0.9); }
+    </style>
+</head>
+<body>
+
+<div class="app-shell" id="app">
+
+    <section id="screen-onboarding" class="flex-1 p-10 flex flex-col justify-center fade-in">
+        <div class="mb-8">
+            <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold text-slate-900 leading-tight">Sales Skills Lab</h1>
+            <p class="text-slate-500 mt-4 leading-relaxed">Entrenamiento de guerrilla para vendedores. Aprende a cerrar más en tus ratos muertos.</p>
+        </div>
+        <div class="space-y-4">
+            <input type="text" id="userName" placeholder="Tu nombre" class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-indigo-500 outline-none font-semibold transition-all">
+            <button onclick="toDashboard()" class="w-full bg-slate-900 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-indigo-700 transition-all flex justify-between px-8 items-center">
+                COMENZAR RUTA <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <section id="screen-dashboard" class="hidden flex-1 flex flex-col fade-in h-full overflow-y-auto">
+        <header class="p-8 pb-4 sticky top-0 bg-white/90 backdrop-blur-sm z-10">
+            <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1">Tu Progreso</p>
+            <h2 class="text-2xl font-extrabold text-slate-800">Hola, <span id="display-name" class="text-indigo-600">...</span></h2>
+            <div class="flex items-center space-x-2 mt-4 bg-indigo-50 w-fit px-4 py-1.5 rounded-full border border-indigo-100">
+                <span class="text-xs font-black text-indigo-700" id="xp-counter">0 XP</span>
+            </div>
+        </header>
+
+        <main class="p-8 space-y-4 pt-2">
+            <div id="module-1" onclick="initModule(1)" class="bg-white p-6 rounded-[2.5rem] border-2 border-indigo-100 shadow-sm flex items-center justify-between cursor-pointer hover:border-indigo-400 transition-all group">
+                <div class="flex items-center space-x-4">
+                    <div id="icon-1" class="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"><i class="fas fa-ear-listen"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Escucha Activa 80/20</h3>
+                        <p id="status-1" class="text-[10px] text-indigo-500 font-bold uppercase tracking-tight">Disponible • 50 XP</p>
+                    </div>
+                </div>
+                <i id="action-1" class="fas fa-play text-indigo-600"></i>
+            </div>
+            
+            <div id="module-2" class="bg-slate-50 p-6 rounded-[2.5rem] border-2 border-transparent flex items-center justify-between opacity-50 transition-all">
+                <div class="flex items-center space-x-4">
+                    <div id="icon-2" class="w-12 h-12 bg-slate-200 text-slate-400 rounded-xl flex items-center justify-center"><i class="fas fa-bullhorn"></i></div>
+                    <div>
+                        <h3 id="text-2" class="font-bold text-slate-400 text-sm">Sales Storytelling</h3>
+                        <p id="status-2" class="text-[10px] text-slate-400 font-bold uppercase">Bloqueado</p>
+                    </div>
+                </div>
+                <i id="action-2" class="fas fa-lock text-slate-300"></i>
+            </div>
+
+            <div id="module-3" class="bg-slate-50 p-6 rounded-[2.5rem] border-2 border-transparent flex items-center justify-between opacity-50 transition-all">
+                <div class="flex items-center space-x-4">
+                    <div id="icon-3" class="w-12 h-12 bg-slate-200 text-slate-400 rounded-xl flex items-center justify-center"><i class="fas fa-handshake"></i></div>
+                    <div>
+                        <h3 id="text-3" class="font-bold text-slate-400 text-sm">Cierre de Judo</h3>
+                        <p id="status-3" class="text-[10px] text-slate-400 font-bold uppercase">Bloqueado</p>
+                    </div>
+                </div>
+                <i id="action-3" class="fas fa-lock text-slate-300"></i>
+            </div>
+        </main>
+    </section>
+
+    <section id="screen-briefing" class="hidden flex-1 p-10 flex flex-col justify-center fade-in text-center">
+        <div id="briefing-icon" class="text-indigo-600 text-5xl mb-6"><i class="fas fa-bullseye"></i></div>
+        <h2 id="briefing-title" class="text-2xl font-black text-slate-900 mb-4">...</h2>
+        <p id="briefing-desc" class="text-slate-500 text-sm leading-relaxed mb-10">...</p>
+        
+        <div id="audio-container" class="hidden mb-10 w-full transform hover:scale-105 transition-transform">
+            <div class="audio-player">
+                <div class="play-btn" onclick="toggleAudio()">
+                    <i id="audio-icon" class="fas fa-play"></i>
+                </div>
+                <div class="text-left flex-1">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Podcast</p>
+                    <p class="text-sm font-bold">Hackear el cerebro</p>
+                </div>
+            </div>
+            <audio id="module-audio" src="podcast.m4a"></audio> 
+        </div>
+
+        <button onclick="toTraining()" class="w-full bg-indigo-600 text-white font-bold py-5 rounded-2xl shadow-lg hover:bg-indigo-700 transition-colors">ENTRAR AL LAB</button>
+    </section>
+
+    <section id="screen-training" class="hidden flex-1 flex flex-col fade-in">
+        <div class="p-6 flex space-x-2">
+            <div class="progress-segment active" id="seg-1"></div>
+            <div class="progress-segment" id="seg-2"></div>
+            <div class="progress-segment" id="seg-3"></div>
+        </div>
+
+        <div class="p-8 flex-1 flex flex-col justify-center">
+            <div class="flashcard w-full" id="fc-main" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="card-face card-front bg-slate-900 text-white flex flex-col justify-center items-center text-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-[60px] opacity-20"></div>
+                        <div id="fc-visual" class="text-7xl mb-6 relative z-10">🤫</div>
+                        <h3 id="fc-title" class="text-2xl font-extrabold italic relative z-10">...</h3>
+                        <p class="mt-8 text-[10px] font-black uppercase tracking-[0.3em] opacity-40 animate-pulse">Toca para girar</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <p id="fc-desc" class="text-slate-700 font-medium leading-relaxed mb-6 text-sm"></p>
+                        <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100 text-left">
+                            <p class="text-[9px] font-black text-indigo-500 uppercase mb-1">En la vida real:</p>
+                            <p id="fc-real" class="text-[11px] text-indigo-900 leading-tight italic"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-8 pt-0">
+            <button onclick="nextCard()" class="w-full bg-slate-900 text-white font-bold py-5 rounded-2xl flex justify-center items-center space-x-3 shadow-xl">
+                <span>Siguiente</span> <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <section id="screen-scenarios" class="hidden flex-1 p-8 flex flex-col fade-in bg-slate-50">
+        <header class="text-center mb-8 pt-6">
+            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-black px-3 py-1 rounded-full uppercase shadow-sm">Caso Práctico <span id="case-num">1</span>/2</span>
+            <p id="case-text" class="text-slate-800 font-bold mt-6 text-xl leading-snug"></p>
+        </header>
+        <div id="case-options" class="space-y-4 mt-auto mb-6"></div>
+    </section>
+
+    <section id="screen-completion" class="hidden flex-1 p-10 flex flex-col justify-center items-center fade-in bg-indigo-600 text-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" id="confetti-canvas"></div>
+        
+        <div class="mb-8 relative z-10">
+            <div class="w-24 h-24 bg-white text-indigo-600 rounded-3xl flex items-center justify-center text-5xl shadow-2xl mx-auto mb-8 rotate-3">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4">¡Imparable!</h2>
+            <p class="text-indigo-100 text-lg font-medium leading-relaxed">Has completado el entrenamiento Sales Warrior. Tu capacidad de negociación ha subido de nivel.</p>
+        </div>
+
+        <div class="bg-indigo-700/50 p-6 rounded-2xl border border-indigo-500/50 w-full mb-8 backdrop-blur-sm">
+            <p class="text-xs uppercase tracking-widest font-bold opacity-70 mb-2">XP TOTAL CONSEGUIDO</p>
+            <p class="text-4xl font-black" id="final-xp">0 XP</p>
+        </div>
+
+        <button onclick="backToDashboardFromFinish()" class="w-full bg-white text-indigo-600 font-black py-5 rounded-2xl shadow-xl hover:bg-indigo-50 transition-colors z-10">
+            VOLVER AL DASHBOARD
+        </button>
+    </section>
+
+</div>
+
+<script>
+    // --- ESTADO DE LA APP ---
+    let state = {
+        name: "",
+        xp: 0,
+        activeModule: 1,
+        mod1Done: false,
+        mod2Done: false,
+        mod3Done: false,
+        cardIndex: 0,
+        caseIndex: 0
+    };
+
+    // --- DATOS MÓDULO 1 ---
+    const mod1Data = {
+        title: "El Radar de Ventas",
+        desc: "El cliente te dice el 60% de sus objeciones sin palabras. Detecta lo que no se dice.",
+        cards: [
+            { visual: "🤫", title: "Silencio de Oro", desc: "Tras una objeción, calla 3 segundos. El cliente, incómodo, suele revelar la objeción real.", real: "Cliente: 'Es caro'. (Tú callas). Cliente: '...es que no sé si el jefe lo aprobará'." },
+            { visual: "🔄", title: "Parafraseo", desc: "No repitas como un loro. Resume la emoción. 'Entiendo que te preocupa más el riesgo que el precio'.", real: "Si validas su emoción, la resistencia baja." },
+            { visual: "💎", title: "Pregunta Lanza", desc: "En vez de '¿Te gusta?', pregunta '¿Qué problema desaparecería de tu mesa con esto?'.", real: "Obligas al cliente a venderse a sí mismo." }
+        ],
+        cases: [
+            {
+                text: "El cliente dice: 'Todo suena bien, pero tengo que pensarlo'.",
+                options: [
+                    { text: "Preguntar: '¿Qué es exactamente lo que tienes que pensar?'", correct: false, feedback: "Error. Suena agresivo." },
+                    { text: "Validar: 'Lo entiendo. Aparte de pensarlo, ¿hay algo más que te frene?'", correct: true, feedback: "¡Bien! Aíslas la objeción real." }
+                ]
+            },
+            {
+                text: "Estás presentando y el cliente mira el reloj.",
+                options: [
+                    { text: "Aceleras para acabar antes.", correct: false, feedback: "Error. Perderás su atención." },
+                    { text: "Paras: 'Veo que vas justo. ¿Prefieres que vayamos directo al precio y ROI?'", correct: true, feedback: "¡Perfecto! Respetas su tiempo." }
+                ]
+            }
+        ]
+    };
+
+    // --- DATOS MÓDULO 2 ---
+    const mod2Data = {
+        title: "Vender con Historias",
+        desc: "Los datos hacen pensar, las historias hacen comprar. Escucha el podcast para aprender a hackear el cerebro.",
+        cards: [
+            { visual: "📚", title: "Facts Tell, Stories Sell", desc: "El cerebro olvida precios pero recuerda tramas. No vendas gigas, vende lo que pasó con esos gigas.", real: "No digas 'es rápido'. Di 'El Cliente X ahorró 2 horas el primer día'." },
+            { visual: "🌉", title: "El Puente", desc: "Técnica 'Feel, Felt, Found'. Empatiza, muestra que otros dudaron igual, y enseña el éxito.", real: "'Entiendo tu duda (Feel). Juan pensaba igual (Felt). Pero vio que se pagaba solo (Found)'." },
+            { visual: "👹", title: "El Villano", desc: "El enemigo no es tu competencia. El enemigo es el problema actual del cliente.", real: "El villano es 'hacer las facturas a mano', tu producto es la espada." }
+        ],
+        cases: [
+            {
+                text: "Cliente: 'Vuestro servicio es más caro que el de la competencia'.",
+                options: [
+                    { text: "Justificas técnicamente el precio.", correct: false, feedback: "Aburrido. El cerebro lógico seguirá comparando." },
+                    { text: "Historia: 'La empresa X pensaba igual. Eligieron al barato y volvieron a los 3 meses.'", correct: true, feedback: "¡Exacto! Historia de miedo para justificar valor." }
+                ]
+            },
+            {
+                text: "Presentas al CEO.",
+                options: [
+                    { text: "Empiezas con 'Quiénes somos'.", correct: false, feedback: "Error. Al CEO solo le importa su negocio." },
+                    { text: "Empiezas contando cómo otro CEO resolvió el mismo problema.", correct: true, feedback: "¡Boom! Prueba social instantánea." }
+                ]
+            }
+        ]
+    };
+
+    // --- DATOS MÓDULO 3 (CIERRE DE JUDO) ---
+    const mod3Data = {
+        title: "El Cierre de Judo",
+        desc: "El cierre no es empujar, es quitar obstáculos. Aprende a negociar sin ceder tu valor.",
+        cards: [
+            { visual: "👎", title: "Busca el 'No'", desc: "Preguntar '¿Te parece bien?' genera dudas. Preguntar '¿Te parece una mala idea?' da seguridad psicológica.", real: "Cambia '¿Tienes tiempo?' por '¿Es mal momento?'." },
+            { visual: "⚖️", title: "El Intercambio", desc: "Nunca bajes el precio gratis. Si ellos piden descuento, tú pides algo a cambio (tiempo, volumen).", real: "Si cedes sin pedir, confirmas que tu precio estaba inflado." },
+            { visual: "⏱️", title: "El Silencio", desc: "Cuando digas el precio o pidas la firma, CÁLLATE. El primero que hable, pierde.", real: "Vendedor: 'Son 5.000€'. (Silencio absoluto). Cliente: '...Vale'." }
+        ],
+        cases: [
+            {
+                text: "Cliente: 'Es muy caro, la competencia me cobra un 20% menos'.",
+                options: [
+                    { text: "Dices: 'Vale, te igualo el precio si firmas hoy'.", correct: false, feedback: "Error. Has destruido tu autoridad." },
+                    { text: "Dices: '¿Qué parte del servicio eliminamos para llegar a ese precio?'", correct: true, feedback: "¡Judo! Le devuelves la pelota. Menos pago = Menos valor." }
+                ]
+            },
+            {
+                text: "Cliente: 'Me gusta, pero envíame la info y ya te diremos algo'.",
+                options: [
+                    { text: "Dices: 'Vale, os llamo la semana que viene'.", correct: false, feedback: "Perderás el control de la venta." },
+                    { text: "Preguntas: 'Parece que hay dudas. ¿Qué es exactamente lo que os frena ahora?'", correct: true, feedback: "¡Directo! Sacas la objeción oculta." }
+                ]
+            }
+        ]
+    };
+
+    // --- LÓGICA DE NAVEGACIÓN ---
+
+    function getCurrentData() {
+        if (state.activeModule === 1) return mod1Data;
+        if (state.activeModule === 2) return mod2Data;
+        return mod3Data;
+    }
+
+    function toDashboard() {
+        state.name = document.getElementById('userName').value || "Guerrero";
+        document.getElementById('display-name').innerText = state.name;
+        showScreen('screen-dashboard');
+    }
+
+    function initModule(num) {
+        // Bloqueos de niveles
+        if (num === 2 && !state.mod1Done) return;
+        if (num === 3 && !state.mod2Done) return;
+        
+        state.activeModule = num;
+        state.cardIndex = 0;
+        state.caseIndex = 0;
+        
+        const data = getCurrentData();
+        
+        // Setup Briefing
+        document.getElementById('briefing-title').innerText = data.title;
+        document.getElementById('briefing-desc').innerText = data.desc;
+        
+        // Setup Audio (Solo Mod 2)
+        const audioDiv = document.getElementById('audio-container');
+        if (num === 2) {
+            audioDiv.classList.remove('hidden');
+        } else {
+            audioDiv.classList.add('hidden');
+        }
+        
+        showScreen('screen-briefing');
+    }
+
+    function toTraining() {
+        // Parar audio si suena
+        const audio = document.getElementById('module-audio');
+        if(audio) audio.pause();
+
+        showScreen('screen-training');
+        renderCard();
+    }
+
+    function renderCard() {
+        const data = getCurrentData().cards[state.cardIndex];
+        document.getElementById('fc-visual').innerText = data.visual;
+        document.getElementById('fc-title').innerText = data.title;
+        document.getElementById('fc-desc').innerText = data.desc;
+        document.getElementById('fc-real').innerText = data.real;
+        document.getElementById('fc-main').classList.remove('flipped');
+    }
+
+    function nextCard() {
+        const totalCards = getCurrentData().cards.length;
+        if (state.cardIndex < totalCards - 1) {
+            state.cardIndex++;
+            renderCard();
+        } else {
+            toScenarios();
+        }
+    }
+
+    function toScenarios() {
+        document.getElementById('seg-2').classList.add('active');
+        showScreen('screen-scenarios');
+        renderScenario();
+    }
+
+    function renderScenario() {
+        const sc = getCurrentData().cases[state.caseIndex];
+        document.getElementById('case-num').innerText = state.caseIndex + 1;
+        document.getElementById('case-text').innerText = sc.text;
+        
+        document.getElementById('case-options').innerHTML = sc.options.map(opt => `
+            <button onclick="checkAnswer(${opt.correct}, '${opt.feedback.replace(/'/g, "\\'")}')" 
+                class="w-full p-5 bg-white border-2 border-slate-200 rounded-2xl text-left text-sm font-bold text-slate-600 hover:border-indigo-500 hover:bg-indigo-50 transition-all shadow-sm">
+                ${opt.text}
+            </button>
+        `).join('');
+    }
+
+    function checkAnswer(isCorrect, feedback) {
+        if (isCorrect) {
+            // Mini confeti
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+            
+            const totalCases = getCurrentData().cases.length;
+            if (state.caseIndex < totalCases - 1) {
+                state.caseIndex++;
+                setTimeout(renderScenario, 1000);
+            } else {
+                finishModule();
+            }
+        } else {
+            alert("⚠️ " + feedback);
+        }
+    }
+
+    function finishModule() {
+        document.getElementById('seg-3').classList.add('active');
+        
+        // MÓDULO 1 COMPLETADO
+        if (state.activeModule === 1) {
+            if (!state.mod1Done) {
+                state.xp += 50;
+                state.mod1Done = true;
+                unlockModule(2);
+            }
+            alert("¡MÓDULO 1 SUPERADO!");
+            returnToDashboard();
+            
+        // MÓDULO 2 COMPLETADO
+        } else if (state.activeModule === 2) {
+            if (!state.mod2Done) {
+                state.xp += 75;
+                state.mod2Done = true;
+                unlockModule(3);
+            }
+            alert("¡MÓDULO 2 SUPERADO!");
+            returnToDashboard();
+
+        // MÓDULO 3 COMPLETADO (FINAL)
+        } else if (state.activeModule === 3) {
+            if (!state.mod3Done) {
+                state.xp += 100;
+                state.mod3Done = true;
+                markMod3Complete();
+            }
+            // Lanzar pantalla final
+            showCompletionScreen();
+        }
+    }
+
+    function returnToDashboard() {
+        document.getElementById('xp-counter').innerText = state.xp + " XP";
+        showScreen('screen-dashboard');
+        // Reset visuales de progreso
+        setTimeout(() => {
+            document.querySelectorAll('.progress-segment').forEach(el => el.classList.remove('active'));
+            document.getElementById('seg-1').classList.add('active');
+        }, 500);
+    }
+
+    function showCompletionScreen() {
+        document.getElementById('final-xp').innerText = state.xp + " XP";
+        showScreen('screen-completion');
+        
+        // Confeti Masivo
+        var duration = 3 * 1000;
+        var end = Date.now() + duration;
+
+        (function frame() {
+            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+    }
+
+    function backToDashboardFromFinish() {
+        returnToDashboard();
+    }
+
+    // --- UI HELPERS ---
+
+    function unlockModule(num) {
+        // Marca el anterior como completo
+        const prevNum = num - 1;
+        const prevStatus = document.getElementById(`status-${prevNum}`);
+        prevStatus.innerText = "Completado ✅";
+        prevStatus.className = "text-[10px] text-emerald-500 font-bold uppercase";
+        document.getElementById(`icon-${prevNum}`).className = "w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-lg";
+        document.getElementById(`action-${prevNum}`).className = "fas fa-check text-emerald-500";
+
+        // Desbloquea el nuevo
+        const mod = document.getElementById(`module-${num}`);
+        mod.classList.remove('opacity-50');
+        mod.classList.replace('bg-slate-50', 'bg-white');
+        mod.classList.add('border-indigo-100', 'shadow-sm', 'cursor-pointer', 'hover:border-indigo-400', 'group');
+        mod.onclick = function() { initModule(num); }; 
+        
+        document.getElementById(`icon-${num}`).className = "w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform";
+        document.getElementById(`text-${num}`).classList.replace('text-slate-400', 'text-slate-800');
+        
+        const xp = num === 2 ? 75 : 100;
+        const status = document.getElementById(`status-${num}`);
+        status.innerText = `Disponible • ${xp} XP`;
+        status.classList.replace('text-slate-400', 'text-indigo-500');
+        document.getElementById(`action-${num}`).className = "fas fa-play text-indigo-600";
+    }
+
+    function markMod3Complete() {
+        const status = document.getElementById('status-3');
+        status.innerText = "Maestro Jedi ✅";
+        status.className = "text-[10px] text-emerald-500 font-bold uppercase";
+        document.getElementById('icon-3').className = "w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-lg";
+        document.getElementById('action-3').className = "fas fa-trophy text-emerald-500";
+    }
+
+    function toggleAudio() {
+        const audio = document.getElementById('module-audio');
+        const icon = document.getElementById('audio-icon');
+        if (audio.paused) {
+            audio.play();
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+        } else {
+            audio.pause();
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+        }
+    }
+
+    function showScreen(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
