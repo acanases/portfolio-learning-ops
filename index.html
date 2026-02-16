@@ -56,11 +56,11 @@
 
         <!-- ABOUT ME SECTION -->
         <section class="px-8 py-16 md:px-16 grid md:grid-cols-12 gap-12 bg-slate-50/50">
+            <!-- Columna Izquierda: Idiomas -->
             <div class="md:col-span-4">
                 <h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Sobre mí</h2>
                 <div class="w-12 h-1 bg-blue-600 rounded-full mb-6"></div>
                 
-                <!-- Idiomas -->
                 <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
                     <h3 class="text-xs font-bold text-slate-900 uppercase mb-3">Idiomas</h3>
                     <div class="space-y-2 text-sm">
@@ -76,6 +76,7 @@
                 </div>
             </div>
 
+            <!-- Columna Derecha: Bio -->
             <div class="md:col-span-8 space-y-6 text-slate-600 leading-relaxed">
                 <p class="font-medium text-slate-800 text-lg">
                     Cuento con más de 10 años de experiencia orquestando proyectos formativos, enfocándome recientemente en la digitalización y administración de LMS (Cornerstone, Moodle, TalentLMS).
@@ -106,7 +107,41 @@
 
             <div class="grid md:grid-cols-2 gap-8">
 
-                <!-- PROYECTO 1: RETAIL -->
+                <!-- 1. SALES SKILLS LAB (ENLACE CORREGIDO AQUÍ) -->
+                <a href="lms-ventas/index.html" class="group block md:col-span-2 bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 card-hover relative overflow-hidden">
+                    <!-- Decoración de fondo -->
+                    <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-blue-900/20 to-transparent"></div>
+                    
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="bg-blue-500/20 text-blue-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-500/30">Live Demo</span>
+                                <span class="flex items-center gap-1 text-xs font-bold text-white bg-white/10 px-2 py-1 rounded-full animate-pulse">
+                                    <i data-lucide="play-circle" class="w-3 h-3"></i> 📲 Interavtivo
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">Sales Skills Lab: Activa tu modo ventas</h3>
+                            <p class="text-slate-400 text-sm mb-6 max-w-xl">
+                                Aprende a cerrar más ventas en tus ratos muertos. Demo de LMS móvil con podcasting integrado y estructura de 3 módulos con certificación.
+                            </p>
+                            <div class="flex gap-4 text-xs text-slate-500 font-bold uppercase tracking-wide border-t border-slate-800 pt-4">
+                                <span>Mobile First</span>
+                                <span>Microlearning</span>
+                                <span>Gamification</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Preview Visual -->
+                        <div class="hidden md:block w-48 h-32 bg-slate-800 rounded-lg border border-slate-700 shadow-lg p-3 rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                            <div class="w-full h-full bg-slate-900 rounded border border-slate-800 flex flex-col gap-2 p-2">
+                                <div class="w-1/2 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="w-full h-16 bg-slate-800 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 2. RETAIL -->
                 <a href="retail.html" class="group block bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 card-hover relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                         <i data-lucide="shopping-bag" class="w-24 h-24"></i>
@@ -124,7 +159,7 @@
                     </div>
                 </a>
 
-                <!-- PROYECTO 2: AUTOMOCIÓN -->
+                <!-- 3. AUTOMOCIÓN -->
                 <a href="onboarding.html" class="group block bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 card-hover relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                         <i data-lucide="car" class="w-24 h-24"></i>
@@ -142,7 +177,7 @@
                     </div>
                 </a>
 
-                <!-- PROYECTO 3: SAAS / EDTECH -->
+                <!-- 4. SAAS / EDTECH -->
                 <a href="edtech.html" class="group block bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 card-hover md:col-span-2 relative overflow-hidden">
                     <!-- Decoración de fondo -->
                     <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-teal-900/20 to-transparent"></div>
@@ -207,4 +242,3 @@
     </script>
 </body>
 </html>
-
