@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alba Canas - Disseny i Gestió de l'eLearning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=League+Spartan:wght@400;700&display=swap');
+        
+        :root {
+            --brand-color: #f43f5e;
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'League Spartan', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #f43f5e, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Top Bar: Name and Contact -->
+    <div class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <div class="font-bold text-2xl tracking-tighter uppercase">ALBA<span class="text-rose-500">CANAS</span></div>
+        <a href="mailto:albacanas.est@gmail.com" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-rose-600 transition-all shadow-lg">CONTACTE</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="perfil" class="pt-8 pb-8 px-6 max-w-6xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mt-6 mb-4 leading-tight">
+            Elevator <span class="gradient-text">Pitch</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto font-light leading-relaxed">
+            Disseny de recorreguts d'aprenentatge que transformen.
+        </p>
+    </header>
+
+    <!-- Video Section -->
+    <section id="video" class="py-6 px-6 max-w-4xl mx-auto">
+        <div class="video-container bg-slate-200 border-4 border-white">
+            <video controls preload="metadata" poster="imatge_portada.jpg" class="w-full h-full">
+                <source src="elevator_pitch.mp4" type="video/mp4">
+                El teu navegador no suporta la reproducció de vídeo.
+            </video>
+        </div>
+        <div class="mt-8 text-center">
+            <p class="italic text-slate-400 text-sm">"Disseny i gestió de projectes d'eLearning"</p>
+        </div>
+    </section>
+
+    <!-- Competències Section -->
+    <section id="competencies" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center text-rose-500">Eines Estratègiques</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Competència 1 -->
+                <div class="flex flex-col items-center text-center p-6 border border-slate-800 rounded-2xl hover:border-rose-500 transition-colors">
+                    <div class="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 italic">Disseny Tecnopedagògic</h3>
+                    <p class="text-slate-400 text-sm">Creació de recorreguts basats en l'experiència de l'estudiant i l'evidència.</p>
+                </div>
+
+                <!-- Competència 2 -->
+                <div class="flex flex-col items-center text-center p-6 border border-slate-800 rounded-2xl hover:border-rose-500 transition-colors">
+                    <div class="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 italic">IA Aplicada</h3>
+                    <p class="text-slate-400 text-sm">Optimització de processos d'aprenentatge mitjançant intel·ligència artificial.</p>
+                </div>
+
+                <!-- Competència 3 -->
+                <div class="flex flex-col items-center text-center p-6 border border-slate-800 rounded-2xl hover:border-rose-500 transition-colors">
+                    <div class="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 italic">Gamificació</h3>
+                    <p class="text-slate-400 text-sm">Aplicació de dinàmiques de joc per fomentar la implicació emocional i la retenció.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white text-center border-t border-slate-100">
+        <p class="text-slate-400 text-xs italic">© 2025 Alba Canas</p>
+    </footer>
+
+</body>
+</html>
